@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # Service 1: Your Flask Application
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      # This tells Flask where to find the database
+      - MONGO_URI=mongodb://mongo:27017/farmer_db
+      - SECRET_KEY=whatisname-infinity
+
+  # Service 2: The MongoDB Database
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27018:27017"
+    volumes:
+      # This saves your data so it doesn't vanish when you stop the container
+      - mongo_data:/data/db
+
+# Define the shared storage volume
+volumes:
+  mongo_data:
