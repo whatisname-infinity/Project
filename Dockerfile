@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Tell Docker what command runs your app
-CMD ["python", "Main.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "Main:app"]
