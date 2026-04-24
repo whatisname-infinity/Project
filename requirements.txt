@@ -4,3 +4,4 @@ flask_pymongo
 dnspython
 flask-login
 werkzeug
+gunicorn
